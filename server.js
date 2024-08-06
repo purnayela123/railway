@@ -9,6 +9,10 @@ const app = express();
 app.use(cors());
 app.use(bodyParser.json());
 
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
+
 const db = mysql.createConnection({
   host: 'localhost',
   user: 'root',
@@ -37,6 +41,8 @@ const authenticateJWT = (req, res, next) => {
     res.sendStatus(401);
   }
 };
+
+
 
 app.post('/register', (req, res) => {
   const { username, password, role } = req.body;
